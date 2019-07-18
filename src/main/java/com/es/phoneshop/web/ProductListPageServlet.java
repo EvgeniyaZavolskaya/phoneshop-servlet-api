@@ -1,7 +1,6 @@
 package com.es.phoneshop.web;
 
 import com.es.phoneshop.model.product.ArrayListProductDao;
-import com.es.phoneshop.model.product.Product;
 import com.es.phoneshop.model.product.ProductDao;
 
 import javax.servlet.ServletException;
@@ -15,19 +14,13 @@ public class ProductListPageServlet extends HttpServlet {
     private ProductDao productDao;
 
     @Override
-    public void init() throws ServletException {
-        super.init();
+    public void init() {
         productDao = new ArrayListProductDao();
-
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("products",  productDao.findProducts());
+        request.setAttribute("products", productDao.findProducts());
         request.getRequestDispatcher("/WEB-INF/pages/productList.jsp").forward(request, response);
     }
-
-
-
-
 }
